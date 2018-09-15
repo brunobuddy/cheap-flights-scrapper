@@ -24,6 +24,7 @@
   "homepage": "https://github.com/brunobuddy/cheap-flights-scrapper#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
+    "facebook-chat-api": "^1.6.0",
     "puppeteer": "^1.8.0"
   }
 }

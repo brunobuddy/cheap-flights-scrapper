@@ -1,5 +1,8 @@
+require('dotenv').config()
+
 const puppeteer = require('puppeteer')
 const fs = require('fs')
+const login = require('facebook-chat-api')
 ;(async () => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
@@ -13,7 +16,7 @@ const fs = require('fs')
 
     await browser.close()
 
-    // We use try/catch to prevent throwing error if no JSON file
+    // Use JSON file instead of DB (one string only to store) We use try/catch to prevent throwing error if no JSON file
     let previousDeal
     try {
         const json = fs.readFileSync('previous-deal.json')
@@ -29,5 +32,25 @@ const fs = require('fs')
     const data = JSON.stringify({ name: lastDeal })
     fs.writeFileSync('previous-deal.json', data)
 
-    // TODO: Send message
+    // Send message
+    login(
+        {
+            email: process.env.SENDER_USERNAME,
+            password: process.env.SENDER_PASSWORD
+        },
+        (err, api) => {
+            if (err) return console.error(err)
+
+            const recipients = process.env.RECIPIENTS.split(',')
+
+            recipients.forEach(recipient => {
+                var facebookId = recipient
+                var msg =
+                    lastDeal +
+                    ' ' +
+                    'https://www.voyagespirates.fr/tag/erreur-de-pri'
+                api.sendMessage(msg, facebookId)
+            })
+        }
+    )
 })()
