@@ -9,7 +9,7 @@ const login = require('facebook-chat-api')
 
     await page.goto('https://www.voyagespirates.fr/tag/erreur-de-pri')
 
-    // execute standard javascript in the context of the page.
+    // standard JS : Get first occurrence of item, in our case titles are <a> inside <h2>
     const lastDeal = await page.$$eval('h2 > a', anchors => {
         return anchors[0].innerText
     })
@@ -25,6 +25,7 @@ const login = require('facebook-chat-api')
 
     // We don't do anything if not updated
     if (lastDeal === previousDeal) {
+        console.log('Nothing new')
         return false
     }
 
@@ -32,7 +33,7 @@ const login = require('facebook-chat-api')
     const data = JSON.stringify({ name: lastDeal })
     fs.writeFileSync('previous-deal.json', data)
 
-    // Send message
+    // Send message through a Facebook account
     login(
         {
             email: process.env.SENDER_USERNAME,
