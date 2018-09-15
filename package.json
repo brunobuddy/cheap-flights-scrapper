@@ -1,0 +1,33 @@
+{
+  "name": "cheap-flights-scrapper",
+  "version": "1.0.0",
+  "description": "Node scrapper to get SMS notification when new deal on https://www.voyagespirates.fr/tag/erreur-de-pri",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunobuddy/cheap-flights-scrapper.git"
+  },
+  "keywords": [
+    "scrapper",
+    "flight",
+    "nodejs",
+    "puppeteer"
+  ],
+  "author": "Bruno Pérez - Buddyweb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brunobuddy/cheap-flights-scrapper/issues"
+  },
+  "homepage": "https://github.com/brunobuddy/cheap-flights-scrapper#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "facebook-chat-api": "^1.6.0",
+    "fs": "0.0.1-security",
+    "node-cron": "^2.0.1",
+    "puppeteer": "^1.8.0"
+  }
+}
